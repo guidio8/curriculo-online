@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<title>MySQL Tables</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+            <form action="/">
+                <button class = "w3-button w3-teal">Voltar</button>
+            </form>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div>
+            <div class="w3-container">
+                <h2 class="w3-opacity w3-light-grey w3-card-4" style="text-shadow:1px 1px 0 #444">Como eu utilizo uma base de dados para meus dados pessoais como skills e formação, eu coloquei esta página para mostrar
+                um pouco da conexão entre o Frond-End e Back-End da minha aplicação, os campos de busca servem para te guiar na pesquisa
+                cada campo preenchido é um select diferente então se você preencher "nota" com "8" e "Lingua" com "English" serão apresentados
+                a você todas os resultados que possuam nota 8 OU English como primary key na tabela língua</h2>
+                <h2>Estas são as tabelas atuais no Banco de Dados</h2>
+                <p>Tabela de Skills:</p>
+                <table class="w3-table-all">
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Skills</th>
+                        <th>Nota</th>
+                    </tr>
+                    </thead>
+                    <thead>
+                    {% for p in rec %}
+                    <tr class = "w3-light-grey">
+                    <thead>
+                    <th>{{p.nome_skill}}</th>
+                    <th>{{p.nota}}</th>
+                    </thead>
+                    {% endfor %}
+                    </tr>
+
+                    </thead>
+                </table>
+                <p>Tabela de Estudos:</p>
+                <table class="w3-table-all">
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Instituição</th>
+                        <th>Duração</th>
+                        <th>Tipo de Escolaridade</th>
+                    </tr>
+                    </thead>
+                    <thead>
+                    {% for p in rec2 %}
+                    <tr class = "w3-light-grey">
+                    <thead>
+                    <th>{{p.lugar}}</th>
+                    <th>{{p.ano}}</th>
+                    <th>{{p.tipo}}</th>
+                    </thead>
+                    {% endfor %}
+                    </tr>
+
+                    </thead>
+                </table>
+
+                <p>Tabela de Linguas Faladas:</p>
+                <table class="w3-table-all">
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Lingua</th>
+                        <th>Nota</th>
+                    </tr>
+                    </thead>
+                    <thead>
+                    {% for p in rec3 %}
+                    <tr class = "w3-light-grey">
+                    <thead>
+                    <th>{{p.nome_lingua}}</th>
+                    <th>{{p.nota}}</th>
+                    </thead>
+                    {% endfor %}
+                    </tr>
+
+                    </thead>
+                </table>
+                <br>
+            </div>
+
+            <div class="w3-card-4">
+                <div class="w3-container w3-teal">
+                    <h2>SELECT</h2>
+                </div>
+                <form class="w3-container" action="/mysql" method="POST">
+                    <p>
+                        <label class="w3-text-teal"><b>Skill</b></label>
+                        <input class="w3-input w3-border w3-sand" name="nome_skill" value = "{{request.form.nome_skill}}">
+                    <p>
+                        <label class="w3-text-teal"><b>Nota</b></label>
+                        <input class="w3-input w3-border w3-sand"  name="nota" value = "{{request.form.val2}}">
+                    <p>
+                    <p>
+                        <label class="w3-text-teal"><b>Instituição</b></label>
+                        <input class="w3-input w3-border w3-sand" name="instituicao"  value = "{{request.form.val3}}">
+                    <p>
+                    <p>
+                        <label class="w3-text-teal"><b>Lingua</b></label>
+                        <input class="w3-input w3-border w3-sand" name="lingua"  value = "{{request.form.val4}}">
+                    <p>
+                        <button class="w3-btn w3-teal">SELECT</button></p>
+                </form>
+            </div>
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
+    <br>
+</footer>
+
+</body>
+</html>

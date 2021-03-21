@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<title>Adicione novas Skills ao seu repertório</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img src={{url_for('static', filename = 'imagens/avatar.jpg')}} style="width:100%" alt="Avatar">
+                    <div class="w3-display-bottomleft w3-container w3-text-white">
+                        <h2>Luccas Guidio</h2>
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-grey"></i>Cientista da Computação</p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-grey"></i>São Paulo, Brasil</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-grey"></i>guidioo@hotmail.com</p>
+                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-grey"></i>+55(11)97322-6172</p>
+                    <hr>
+                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-grey"></i>Main Skills</b></p>
+                    {% for p in rec %}
+                    {% if p.nome_skill == 'MySQL' %}
+                    <form action="/mysql">
+                        <button class = "w3-btn">{{p.nome_skill}}</button>
+                    </form>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                    </div>
+                    {% else %}
+                    <p>{{p.nome_skill}}</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <br>
+                    <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-grey"></i>Languages</b></p>
+                    {% for p in rec3 %}
+                    <p>{{p.nome_lingua}}</p>
+                    <div class="w3-light-grey w3-round-xlarge">
+                        <div class="w3-round-xlarge w3-grey" style="height:24px;width:{{p.nota}}%"></div>
+                    </div>
+                    {% endfor %}
+                    <br>
+                </div>
+            </div><br>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-third">
+            <div class="w3-card-4">
+                <div class="w3-container w3-teal">
+                    <h2></h2>
+                </div>
+                <form class="w3-container" action="/add_skills" method="POST">
+                    <p>
+                        <label class="w3-text-teal"><b>Skill</b></label>
+                        <input class="w3-input w3-border w3-sand" name="nome_skill"value = "{{request.form.nome_skill}}">
+                    <p>
+                        <label class="w3-text-teal"><b>Nota</b></label>
+                        <input class="w3-input w3-border w3-sand" name="nota"  value = "{{request.form.nota}}">
+                    <p>
+                        <button class="w3-btn w3-teal">Adicionar</button></p>
+                </form>
+            </div>
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
+    <br>
+</footer>
+
+</body>
+</html>
