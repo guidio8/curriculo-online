@@ -2,10 +2,17 @@ from flask import *
 import sqlite3
 
 app = Flask(__name__)
-SECRET_KEY = 'tp_bd'
 USERNAME = 'Guidio'
-PASSWORD = '123'
+PASSWORD = '1597538426'
 app.config.from_object(__name__)
+authentication = []
+
+def logged(*args):
+    if True in args:
+        authentication.append('logged')
+        return authentication
+    else:
+        return False
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -14,7 +21,7 @@ def login():
         passw = request.form['password']
         if user == USERNAME:
             if passw == PASSWORD:
-                return index(True)
+                return index(logged(True))
 
     return render_template('login.html')
 
@@ -28,15 +35,15 @@ def translatePortugues():
 
 @app.route('/', methods=['GET'])
 def index(*args):
+    is_logged = False
+    print(authentication)
     language = 'pt'
-
-    if True in args:
-        is_logged = True
-    else:
-        is_logged = False
 
     if 'en' in args:
         language = 'en'
+
+    if 'logged' in authentication:
+        is_logged = True
 
     with sqlite3.connect('sql/skills.db') as con:
         cur = con.cursor()
@@ -64,10 +71,16 @@ def index(*args):
 
 @app.route('/fill_skills')
 def nameWIP():
-    return render_template('add_skills.html')
+    if 'logged' in authentication:
+        return render_template('add_skills.html')
+    else:
+        return redirect('/')
 
 @app.route('/logout')
 def logout():
+    while 'logged' in authentication:
+        for i in authentication:
+            authentication.remove(i)
     return render_template('login.html')
 
 @app.route('/mysql', methods=['POST', 'GET'])
@@ -164,8 +177,8 @@ def nameWIP4():
 
 @app.route('/add_skills', methods=['GET', 'POST'])
 def nameWIP3():
-    if (request.method == 'POST'):
-        if request.method == 'POST':
+    if 'logged' in authentication:
+        if (request.method == 'POST'):
             with sqlite3.connect('sql/skills.db') as con:
                 insert = [
                     request.form['nome_skill'],
@@ -184,32 +197,35 @@ def nameWIP3():
                         return redirect('/')
                     else:
                         return redirect('/')
-    return render_template('index.html')
+    else:
+        return redirect('/')
 
 
 @app.route('/remove_skills')
 def nameWIP6():
-    return render_template('remove_skills.html')
+    if 'logged' in authentication:
+        return render_template('remove_skills.html')
+    else:
+        return redirect('/')
 
 
 @app.route('/tira_skills', methods=['GET', 'POST'])
 def nameWIP5():
     if (request.method == 'POST'):
-        if request.method == 'POST':
-            with sqlite3.connect('sql/skills.db') as con:
-                insert = [
-                    request.form['nome_skill']
-                ]
-                if None in insert:
-                    flash("Por favor preencha todos os campos")
-                    return redirect('/')
-                else:
-                    cur = con.cursor()
-                    cur.execute(
-                        "DELETE FROM SKILLS WHERE nome_skill = ?",
-                        [insert[0]])
-                    con.commit()
-                    return redirect('/')
+        with sqlite3.connect('sql/skills.db') as con:
+            insert = [
+                request.form['nome_skill']
+            ]
+            if None in insert:
+                flash("Por favor preencha todos os campos")
+                return redirect('/')
+            else:
+                cur = con.cursor()
+                cur.execute(
+                    "DELETE FROM SKILLS WHERE nome_skill = ?",
+                    [insert[0]])
+                con.commit()
+                return redirect('/')
     return render_template('index.html')
 
 
