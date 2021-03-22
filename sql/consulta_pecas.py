@@ -4,7 +4,8 @@ conn = sqlite3.connect('skills.db')
 
 cursor = conn.cursor()
 
-x = cursor.execute("SELECT * from SKILLS WHERE nome_skill = ''")
+x = cursor.execute("SELECT PESSOAS.nome, FUNCIONARIOS.cadastro FROM PESSOAS LEFT JOIN FUNCIONARIOS"
+                   " ON FUNCIONARIOS.nome = PESSOAS.nome")
 rows = x.fetchall()
 
 print(rows)

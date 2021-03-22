@@ -18,7 +18,18 @@ cursor.execute("""REPLACE INTO SKILLS VALUES('R', 6)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('Assemply', 6)""")
 
 cursor.execute("""REPLACE INTO LANGUAGES VALUES('English', 9)""")
-cursor.execute("""REPLACE INTO LANGUAGES VALUES('Português', 8)""")
+cursor.execute("""REPLACE INTO LANGUAGES VALUES('Português', 10)""")
+
+cursor.execute("""REPLACE INTO PESSOAS (nome) VALUES("Miguel")""")
+cursor.execute("""REPLACE INTO PESSOAS (nome) VALUES("Maria Eduarda")""")
+cursor.execute("""REPLACE INTO PESSOAS (nome) VALUES("Arthur")""")
+cursor.execute("""REPLACE INTO PESSOAS (nome) VALUES("Davi")""")
+cursor.execute("""REPLACE INTO PESSOAS (nome) VALUES("Gabriel")""")
+
+cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Miguel", 50000, 2578)""")
+cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Roberto", 50000, 26078)""")
+cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Maria Eduarda", 90000, 894512)""")
+cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Alice", 100000, 96203)""")
 
 
 conn.commit()

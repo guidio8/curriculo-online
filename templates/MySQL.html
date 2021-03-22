@@ -28,69 +28,42 @@
 
         <!-- Right Column -->
         <div>
+            {% if query == 'nenhuma' or query == 'select' %}
             <div class="w3-container">
-                <h2 class="w3-opacity w3-light-grey w3-card-4" style="text-shadow:1px 1px 0 #444">Como eu utilizo uma base de dados para meus dados pessoais como skills e formação, eu coloquei esta página para mostrar
-                um pouco da conexão entre o Frond-End e Back-End da minha aplicação, os campos de busca servem para te guiar na pesquisa
-                cada campo preenchido é um select diferente então se você preencher "nota" com "8" e "Lingua" com "English" serão apresentados
-                a você todas os resultados que possuam nota 8 OU English como primary key na tabela língua</h2>
-                <h2>Estas são as tabelas atuais no Banco de Dados</h2>
-                <p>Tabela de Skills:</p>
+                <p>Tabela de Funcionários:</p>
                 <table class="w3-table-all">
                     <thead>
                     <tr class="w3-light-grey">
-                        <th>Skills</th>
-                        <th>Nota</th>
-                    </tr>
-                    </thead>
-                    <thead>
-                    {% for p in rec %}
-                    <tr class = "w3-light-grey">
-                    <thead>
-                    <th>{{p.nome_skill}}</th>
-                    <th>{{p.nota}}</th>
-                    </thead>
-                    {% endfor %}
-                    </tr>
-
-                    </thead>
-                </table>
-                <p>Tabela de Estudos:</p>
-                <table class="w3-table-all">
-                    <thead>
-                    <tr class="w3-light-grey">
-                        <th>Instituição</th>
-                        <th>Duração</th>
-                        <th>Tipo de Escolaridade</th>
+                        <th>Nome</th>
+                        <th>Salario</th>
+                        <th>Cadastro</th>
                     </tr>
                     </thead>
                     <thead>
                     {% for p in rec2 %}
                     <tr class = "w3-light-grey">
                     <thead>
-                    <th>{{p.lugar}}</th>
-                    <th>{{p.ano}}</th>
-                    <th>{{p.tipo}}</th>
+                    <th>{{p.nome}}</th>
+                    <th>{{p.salario}}</th>
+                    <th>{{p.cadastro}}</th>
                     </thead>
                     {% endfor %}
                     </tr>
 
                     </thead>
                 </table>
-
-                <p>Tabela de Linguas Faladas:</p>
+                <p>Tabela de Pessoas:</p>
                 <table class="w3-table-all">
                     <thead>
                     <tr class="w3-light-grey">
-                        <th>Lingua</th>
-                        <th>Nota</th>
+                        <th>Nome</th>
                     </tr>
                     </thead>
                     <thead>
-                    {% for p in rec3 %}
+                    {% for p in rec %}
                     <tr class = "w3-light-grey">
                     <thead>
-                    <th>{{p.nome_lingua}}</th>
-                    <th>{{p.nota}}</th>
+                    <th>{{p.nome}}</th>
                     </thead>
                     {% endfor %}
                     </tr>
@@ -99,45 +72,68 @@
                 </table>
                 <br>
             </div>
+            {% endif %}
+            {% if query == 'join' %}
+            <div class="w3-container">
+                <p>Tabela Resultado:</p>
+                <table class="w3-table-all">
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Nome</th>
+                        <th>Salario</th>
+                        <th>Cadastro</th>
+                    </tr>
+                    </thead>
+                    <thead>
+                    {% for p in rec %}
+                    <tr class = "w3-light-grey">
+                    <thead>
+                    <th>{{p.nome}}</th>
+                    <th>{{p.salario}}</th>
+                    <th>{{p.cadastro}}</th>
+                    </thead>
+                    {% endfor %}
+                    </tr>
 
-            <div class="w3-card-4">
-                <div class="w3-container w3-teal">
-                    <h2>SELECT</h2>
+                    </thead>
+                </table>
+                {% endif %}
+                <br>
+                <div class="w3-card-4">
+                    <div class="w3-container w3-teal">
+                        <h2></h2>
+                    </div>
+                    <form class="w3-container" method="POST">
+                        <p>
+                            <label class="w3-text-teal"><b>Nome</b></label>
+                            <input class="w3-input w3-border w3-sand"  name="nome" value = "{{request.form.nome}}">
+                        </p>
+                        <p>
+                            <label class="w3-text-teal"><b>Salario</b></label>
+                            <input class="w3-input w3-border w3-sand" name="salario"  value = "{{request.form.salario}}">
+                        <p>
+                            <button formaction="/select" class="w3-btn w3-teal">SELECT</button>
+                            <button formaction="/join" class="w3-btn w3-teal">JOIN</button>
+                            <button formaction="/mysql" class="w3-btn w3-teal">RESET</button>
+                        </p>
+                    </form>
+                    <img src={{url_for('static', filename = 'imagens/Diagramas.jpg')}} style="width:100%" alt="Diagrama">
                 </div>
-                <form class="w3-container" action="/mysql" method="POST">
-                    <p>
-                        <label class="w3-text-teal"><b>Skill</b></label>
-                        <input class="w3-input w3-border w3-sand" name="nome_skill" value = "{{request.form.nome_skill}}">
-                    <p>
-                        <label class="w3-text-teal"><b>Nota</b></label>
-                        <input class="w3-input w3-border w3-sand"  name="nota" value = "{{request.form.val2}}">
-                    <p>
-                    <p>
-                        <label class="w3-text-teal"><b>Instituição</b></label>
-                        <input class="w3-input w3-border w3-sand" name="instituicao"  value = "{{request.form.val3}}">
-                    <p>
-                    <p>
-                        <label class="w3-text-teal"><b>Lingua</b></label>
-                        <input class="w3-input w3-border w3-sand" name="lingua"  value = "{{request.form.val4}}">
-                    <p>
-                        <button class="w3-btn w3-teal">SELECT</button></p>
-                </form>
+                <!-- End Right Column -->
             </div>
-            <!-- End Right Column -->
+
+            <!-- End Grid -->
         </div>
 
-        <!-- End Grid -->
+        <!-- End Page Container -->
     </div>
 
-    <!-- End Page Container -->
-</div>
-
-<footer class="w3-container w3-teal w3-center w3-margin-top">
-    <p>Find me on social media.</p>
-    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
-    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
-    <br>
-</footer>
+    <footer class="w3-container w3-teal w3-center w3-margin-top">
+        <p>Find me on social media.</p>
+        <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+        <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
+        <br>
+    </footer>
 
 </body>
 </html>
