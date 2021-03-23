@@ -5,13 +5,14 @@ import os
 app = Flask(__name__)
 app.config['USERNAME'] = os.getenv('USERNAME')
 app.config['PASSWORD'] = os.getenv('PASSWORD')
+app.config['AUTHENTICATION'] = os.getenv('AUTHENTICATION')
 app.config.from_pyfile('config.cfg', silent=True)
-authentication = []
+
 
 def logged(*args):
     if True in args:
-        authentication.append('logged')
-        return authentication
+        app.config['AUTHENTICATION'] += 'logged'
+        return app.config['AUTHENTICATION']
     else:
         return False
 
@@ -42,7 +43,7 @@ def index(*args):
     if 'en' in args:
         language = 'en'
 
-    if 'logged' in authentication:
+    if 'logged' in app.config['AUTHENTICATION']:
         is_logged = True
 
     with sqlite3.connect('sql/skills.db') as con:
@@ -78,9 +79,8 @@ def load_pag_add_skills():
 
 @app.route('/logout')
 def logout():
-    while 'logged' in authentication:
-        for i in authentication:
-            authentication.remove(i)
+    if 'logged' in app.config['AUTHENTICATION']:
+        app.config['AUTHENTICATION'] = ''
     return render_template('login.html')
 
 @app.route('/mysql', methods=['POST', 'GET'])
@@ -177,7 +177,7 @@ def search_tables():
 
 @app.route('/add_skills', methods=['GET', 'POST'])
 def adicionar_skills():
-    if 'logged' in authentication:
+    if 'logged' in app.config['AUTHENTICATION']:
         if (request.method == 'POST'):
             with sqlite3.connect('sql/skills.db') as con:
                 insert = [
@@ -203,7 +203,7 @@ def adicionar_skills():
 
 @app.route('/remove_skills')
 def load_pag_remover_skills():
-    if 'logged' in authentication:
+    if 'logged' in app.config['AUTHENTICATION']:
         return render_template('remove_skills.html')
     else:
         return redirect('/')
