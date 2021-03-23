@@ -18,6 +18,9 @@ def logged(*args):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if 'logged' in app.config['AUTHENTICATION']:
+        print("aqui")
+        return redirect('/')
     if request.method == 'POST':
         user = request.form['username']
         passw = request.form['password']
@@ -25,7 +28,8 @@ def login():
             if passw == app.config['PASSWORD']:
                 return index(logged(True))
 
-    return render_template('login.html')
+    return render_template("login.html")
+
 
 @app.route('/en', methods=['GET'])
 def translateEnglish():
@@ -72,7 +76,7 @@ def index(*args):
 
 @app.route('/fill_skills')
 def load_pag_add_skills():
-    if 'logged' in authentication:
+    if 'logged' in app.config['AUTHENTICATION']:
         return render_template('add_skills.html')
     else:
         return redirect('/')
