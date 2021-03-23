@@ -3,8 +3,10 @@ import sqlite3
 conn = sqlite3.connect('skills.db')
 
 cursor = conn.cursor()
-cursor.execute("""REPLACE INTO ESTUDOS VALUES('Universidade Federal de São João del-Rei', '2015-2021', 'Bacharelado')""")
-cursor.execute("""REPLACE INTO ESTUDOS VALUES('Colégio Franciscano Nossa Senhora Aparecida', '2010-2013', 'Ensino Médio')""")
+cursor.execute(
+    """REPLACE INTO ESTUDOS VALUES('Universidade Federal de São João del-Rei', '2015-2021', 'Bacharelado')""")
+cursor.execute(
+    """REPLACE INTO ESTUDOS VALUES('Colégio Franciscano Nossa Senhora Aparecida', '2010-2013', 'Ensino Médio')""")
 
 cursor.execute("""REPLACE INTO SKILLS VALUES('Python', 9)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('JAVA', 8)""")
@@ -31,5 +33,5 @@ cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Ro
 cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Maria Eduarda", 90000, 894512)""")
 cursor.execute("""REPLACE INTO FUNCIONARIOS (nome, salario, cadastro) VALUES("Alice", 100000, 96203)""")
 
-
 conn.commit()
+conn.close()

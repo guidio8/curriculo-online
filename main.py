@@ -1,10 +1,11 @@
 from flask import *
 import sqlite3
+import os
 
 app = Flask(__name__)
-USERNAME = 'Guidio'
-PASSWORD = '1597538426'
-app.config.from_object(__name__)
+app.config['USERNAME'] = os.getenv('USERNAME')
+app.config['PASSWORD'] = os.getenv('PASSWORD')
+app.config.from_pyfile('config.cfg', silent=True)
 authentication = []
 
 def logged(*args):
@@ -19,8 +20,8 @@ def login():
     if request.method == 'POST':
         user = request.form['username']
         passw = request.form['password']
-        if user == USERNAME:
-            if passw == PASSWORD:
+        if user == app.config['USERNAME']:
+            if passw == app.config['PASSWORD']:
                 return index(logged(True))
 
     return render_template('login.html')
@@ -36,7 +37,6 @@ def translatePortugues():
 @app.route('/', methods=['GET'])
 def index(*args):
     is_logged = False
-    print(authentication)
     language = 'pt'
 
     if 'en' in args:
@@ -226,7 +226,7 @@ def nameWIP5():
                     [insert[0]])
                 con.commit()
                 return redirect('/')
-    return render_template('index.html')
+    return redirect('/')
 
 
 if __name__ == '__main__':

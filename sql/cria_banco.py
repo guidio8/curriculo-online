@@ -22,5 +22,5 @@ cursor.execute(
     """CREATE TABLE IF NOT EXISTS FUNCIONARIOS (id_func integer PRIMARY KEY NOT NULL, nome TEXT, salario DOUBLE, cadastro integer)"""
 )
 
-
-
+conn.commit()
+conn.close()
