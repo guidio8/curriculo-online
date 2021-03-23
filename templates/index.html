@@ -7,7 +7,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-  html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
 
 <body class="w3-light-grey">
@@ -15,158 +15,158 @@
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
-  <!-- The Grid -->
-  <div class="w3-row-padding">
+    <!-- The Grid -->
+    <div class="w3-row-padding">
 
-    <!-- Left Column -->
-    <div class="w3-third">
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container">
-          <img src={{url_for('static', filename = 'imagens/avatar.jpg')}} style="width:100%" alt="Avatar">
-          <div class="w3-display-bottomleft w3-container w3-text-white">
-            <h2>Luccas Guidio</h2>
-          </div>
-        </div>
-        <div class="w3-container">
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-grey"></i>Cientista da Computação</p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-grey"></i>São Paulo, Brasil</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-grey"></i>guidioo@hotmail.com</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-grey"></i>+55(11)97322-6172</p>
-          <hr>
-          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-grey"></i>Main Skills</b></p>
-          {% for p in rec %}
-          {% if p.nome_skill == 'MySQL' %}
-          <form action="/mysql">
-            <button class = "w3-btn">{{p.nome_skill}}</button>
-          </form>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
-          </div>
-          {% else %}
-          <p class="w3-margin-left">{{p.nome_skill}}</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
-          </div>
-          {% endif %}
-          {% endfor %}
-          <br>
-          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-grey"></i>Languages</b></p>
-          {% for p in rec3 %}
-          <p>{{p.nome_lingua}}</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-grey" style="height:24px;width:{{p.nota}}%"></div>
-          </div>
-          {% endfor %}
-          <br>
-        </div>
-      </div><br>
+        <!-- Left Column -->
+        <div class="w3-third">
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img src={{url_for('static', filename = 'imagens/avatar.jpg')}} style="width:100%" alt="Avatar">
+                    <div class="w3-display-bottomleft w3-container w3-text-white">
+                        <h2>Luccas Guidio</h2>
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-grey"></i>Cientista da Computação</p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-grey"></i>São Paulo, Brasil</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-grey"></i>guidioo@hotmail.com</p>
+                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-grey"></i>+55(11)97322-6172</p>
+                    <hr>
+                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-grey"></i>Main Skills</b></p>
+                    {% for p in rec %}
+                    {% if p.nome_skill == 'MySQL' or p.nome_skill == 'Python' %}
+                    <form>
+                        <button formaction="/{{p.nome_skill}}" class = "w3-btn">{{p.nome_skill}}</button>
+                    </form>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                    </div>
+                    {% else %}
+                    <p class="w3-margin-left">{{p.nome_skill}}</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-grey" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <br>
+                    <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-grey"></i>Languages</b></p>
+                    {% for p in rec3 %}
+                    <p>{{p.nome_lingua}}</p>
+                    <div class="w3-light-grey w3-round-xlarge">
+                        <div class="w3-round-xlarge w3-grey" style="height:24px;width:{{p.nota}}%"></div>
+                    </div>
+                    {% endfor %}
+                    <br>
+                </div>
+            </div><br>
 
-      <!-- End Left Column -->
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+            <div class="w3-container w3-card w3-white">
+                <!--        <h2 class="w3-text-grey w3-padding-16">Esta é uma versão .pdf de um website escrito em Python e utilizando o framework Flash para servir como meu currículo,-->
+                <!--        por favor acesse http://cvluccasguidio.herokuapp.com para ver seu funcionamento</h2>-->
+                {% if language == 'pt' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Sobre Mim</h2>
+                {% endif %}
+                {% if language == 'en' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>About Me</h2>
+                {% endif %}
+                <form>
+                    <button formaction="/en" class="w3-button w3-teal">EN</button>
+                    <button formaction="/pt" class="w3-button w3-teal">PT</button>
+                </form>
+
+                <div class="w3-container">
+                    {% if language == 'pt' %}
+                    <h5 class="w3-opacity">Olá, meu nome é Luccas e estou cursando o último semestre de Ciência da Computação! Este site é um projeto meu para a digitalização de meu currículo.
+                        Aqui você poderá visualizar minhas informações mais fácilmente, caso exista algum projeto meu escrito em uma linguagem dentre as minhas skills
+                        você poderá clicar na respectiva Skill (clique em MySQL por exemplo) para visualizar o projeto.
+                        O botão de projetos te leva ao meu github, onde estão outros projetos que não couberam neste simples site.</h5><br>
+                    {% endif %}
+                    {% if language == 'en' %}
+                    <h5 class="w3-opacity">Hello, I am Luccas, I am studying to be a Computer Scientist at Universidade Federal de São João del-Rei and I am currently
+                        in my last semester. This website is a personal project where I try to digitize my curriculum. In here you will be able to see some of
+                        my skills and personal information more easily, I also plan on making my projects more easily accessible, so you don't have to go
+                        to github to check them, unless you want to, but for now I only have a database project in here where I play around with MySQL and
+                        play around with some queries, you can check that by clicking on a skill that is called "MySQL" which might be at the left of the page
+                        or the right, depending on how many skills I have inserted into the database so far.</h5><br>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="w3-container w3-card w3-white">
+                {% if language == 'pt' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-university fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Educação</h2>
+                {% endif %}
+                {% if language == 'en' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-university fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+                {% endif %}
+                {% for p in rec2 %}
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>{{p.lugar}}</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{p.ano}}</h6>
+                    <p>{{p.tipo}}</p><br>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="w3-container w3-card w3-white">
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>More Skills</h2>
+                {% for p in rec_resto %}
+                {% if p.nome_skill == 'MySQL' %}
+                <form action="/mysql">
+                    <button class = "w3-btn">{{p.nome_skill}}</button>
+                </form>
+                <div class="w3-light-grey w3-round-xlarge w3-small">
+                    <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                </div>
+                {% else %}
+                <p >{{p.nome_skill}}</p>
+                <div class="w3-light-grey w3-round-xlarge w3-small">
+                    <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <br>
+            </div>
+            {% if logged == True %}
+            <br>
+            <form action='/fill_skills'>
+                <button class="w3-button w3-teal">Adicione mais skills</button>
+            </form>
+            <br>
+            <form action='/remove_skills'>
+                <button class="w3-button w3-teal">Remova alguma Skill</button>
+            </form>
+            {% endif %}
+            <br>
+            <form action='https://github.com/guidio8'>
+                <button class="w3-button w3-teal">Projetos</button>
+            </form>
+            <br>
+            {% if logged == True %}
+            <form action='/logout'>
+                <button class="w3-button w3-teal">Log out</button>
+            </form>
+            {% endif %}
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
     </div>
 
-    <!-- Right Column -->
-    <div class="w3-twothird">
-      <div class="w3-container w3-card w3-white">
-<!--        <h2 class="w3-text-grey w3-padding-16">Esta é uma versão .pdf de um website escrito em Python e utilizando o framework Flash para servir como meu currículo,-->
-<!--        por favor acesse http://cvluccasguidio.herokuapp.com para ver seu funcionamento</h2>-->
-        {% if language == 'pt' %}
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Sobre Mim</h2>
-        {% endif %}
-        {% if language == 'en' %}
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>About Me</h2>
-        {% endif %}
-        <form>
-          <button formaction="/en" class="w3-button w3-teal">EN</button>
-          <button formaction="/pt" class="w3-button w3-teal">PT</button>
-        </form>
-
-        <div class="w3-container">
-          {% if language == 'pt' %}
-          <h5 class="w3-opacity">Olá, meu nome é Luccas e estou cursando o último semestre de Ciência da Computação! Este site é um projeto meu para a digitalização de meu currículo.
-            Aqui você poderá visualizar minhas informações mais fácilmente, caso exista algum projeto meu escrito em uma linguagem dentre as minhas skills
-            você poderá clicar na respectiva Skill (clique em MySQL por exemplo) para visualizar o projeto.
-            O botão de projetos te leva ao meu github, onde estão outros projetos que não couberam neste simples site.</h5><br>
-          {% endif %}
-          {% if language == 'en' %}
-          <h5 class="w3-opacity">Hello, I am Luccas, I am studying to be a Computer Scientist at Universidade Federal de São João del-Rei and I am currently
-            in my last semester. This website is a personal project where I try to digitize my curriculum. In here you will be able to see some of
-            my skills and personal information more easily, I also plan on making my projects more easily accessible, so you don't have to go
-            to github to check them, unless you want to, but for now I only have a database project in here where I play around with MySQL and
-            play around with some queries, you can check that by clicking on a skill that is called "MySQL" which might be at the left of the page
-            or the right, depending on how many skills I have inserted into the database so far.</h5><br>
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="w3-container w3-card w3-white">
-        {% if language == 'pt' %}
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-university fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Educação</h2>
-        {% endif %}
-        {% if language == 'en' %}
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-university fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
-        {% endif %}
-        {% for p in rec2 %}
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>{{p.lugar}}</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{p.ano}}</h6>
-          <p>{{p.tipo}}</p><br>
-        </div>
-        {% endfor %}
-      </div>
-
-      <div class="w3-container w3-card w3-white">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>More Skills</h2>
-        {% for p in rec_resto %}
-        {% if p.nome_skill == 'MySQL' %}
-        <form action="/mysql">
-          <button class = "w3-btn">{{p.nome_skill}}</button>
-        </form>
-        <div class="w3-light-grey w3-round-xlarge w3-small">
-          <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
-        </div>
-        {% else %}
-        <p >{{p.nome_skill}}</p>
-        <div class="w3-light-grey w3-round-xlarge w3-small">
-          <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
-        </div>
-        {% endif %}
-        {% endfor %}
-        <br>
-      </div>
-      {% if logged == True %}
-      <br>
-      <form action='/fill_skills'>
-        <button class="w3-button w3-teal">Adicione mais skills</button>
-      </form>
-      <br>
-      <form action='/remove_skills'>
-        <button class="w3-button w3-teal">Remova alguma Skill</button>
-      </form>
-      {% endif %}
-      <br>
-      <form action='https://github.com/guidio8'>
-        <button class="w3-button w3-teal">Projetos</button>
-      </form>
-      <br>
-      {% if logged == True %}
-      <form action='/logout'>
-        <button class="w3-button w3-teal">Log out</button>
-      </form>
-      {% endif %}
-      <!-- End Right Column -->
-    </div>
-
-    <!-- End Grid -->
-  </div>
-
-  <!-- End Page Container -->
+    <!-- End Page Container -->
 </div>
 
 <footer class="w3-container w3-teal w3-center w3-margin-top">
-  <p>Find me on social media.</p>
-  <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
-  <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
-  <br>
+    <p>Find me on social media.</p>
+    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"</a>
+    <br>
 </footer>
 
 </body>

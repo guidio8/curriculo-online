@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<title>python</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div>
+            <br>
+            <div class="w3-card-4">
+                <div class="w3-container w3-teal">
+                    <h2></h2>
+                </div>
+                {% if language == 'pt' %}
+                <form class="w3-container" method="POST">
+                    <p>
+                    <h2 class="w3-text-teal"><b>Projetos em Python</b></h2>
+                    <br>
+                    <h2>Este projeto todo foi escrito em Python, e o códgio é open source.
+                        Caso queira ler o código, basta clicar no botão</h2>
+                    </p>
+                    <button class="w3-button w3-teal" formaction="http://github.com/guidio8/curriculo-online">CV Online</button>
+                    <p>
+                        <br>
+                    <h2>Um outro projeto escrito em Python é a Assistente Pessoal que eu fiz baseada na assistente da google
+                        o código também é open source e para acessá-lo clique no botão abaixo</h2>
+                    </p>
+                    <button class="w3-button w3-teal" formaction="http://github.com/guidio8/assistente-pessoal">Assistente Pessoal</button>
+                    <p></p>
+                </form>
+                <form action="/">
+                    <button class = "w3-margin-left w3-button w3-teal">Voltar</button>
+                </form>
+                {% else %}
+                <form class="w3-container" method="POST">
+                    <p>
+                    <h2 class="w3-text-teal"><b>Python Projects</b></h2>
+                    <br>
+                    <h2>This project was written in Python and is open source, in case you want to read the code you can
+                        click the button below
+                    </h2>
+                    </p>
+                    <button class="w3-button w3-teal" formaction="http://github.com/guidio8/curriculo-online">CV Online</button>
+                    <p>
+                        <br>
+                    <h2>Another project that I made using Python is a Personal Assistant base on Google's PA, it is currently in hiatus
+                        because I have been focusing on college, it's main speaking language is portuguese but it does understand
+                        a few phrases in English</h2>
+                    </p>
+                    <button class="w3-button w3-teal" formaction="http://github.com/guidio8/assistente-pessoal">Personal Assistant</button>
+                    <p></p>
+                </form>
+                <form action="/">
+                    <button class = "w3-margin-left w3-button w3-teal">Home Page</button>
+                </form>
+                {% endif %}
+            </div>
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"></a>
+</footer>
+
+</body>
+</html>

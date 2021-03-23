@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.config['USERNAME'] = os.getenv('USERNAME')
 app.config['PASSWORD'] = os.getenv('PASSWORD')
 app.config['AUTHENTICATION'] = os.getenv('AUTHENTICATION')
+app.config['LANGUAGE'] = os.getenv('LANGUAGE')
 app.config.from_pyfile('config.cfg', silent=True)
 
 
@@ -27,18 +28,16 @@ def login():
 
 @app.route('/en', methods=['GET'])
 def translateEnglish():
-    return index('en')
+    app.config['LANGUAGE'] = 'en'
+    return index()
 
 @app.route('/pt', methods=['GET'])
 def translatePortugues():
-    return index('pt')
+    app.config['LANGUAGE'] = 'pt'
+    return index()
 
-@app.route('/', methods=['GET'])
-def index(*args):
-    language = 'pt'
-
-    if 'en' in args:
-        language = 'en'
+@app.route('/', methods=['POST','GET'])
+def index():
 
     if 'logged' in app.config['AUTHENTICATION']:
         is_logged = True
@@ -67,7 +66,7 @@ def index(*args):
         langs = [dict(nome_lingua=row[0], nota=row[1] * 10) for row in rows]
         con.commit()
     sqlite3.connect('sql/skills.db').close()
-    return render_template('index.html', rec=skills, rec_resto=skills_resto, rec2=estudos, rec3=langs, logged=is_logged, language=language)
+    return render_template('index.html', rec=skills, rec_resto=skills_resto, rec2=estudos, rec3=langs, logged=is_logged, language=app.config['LANGUAGE'])
 
 @app.route('/fill_skills')
 def load_pag_add_skills():
@@ -82,7 +81,8 @@ def logout():
         app.config['AUTHENTICATION'] = ''
     return render_template('login.html')
 
-@app.route('/mysql', methods=['POST', 'GET'])
+
+@app.route('/MySQL', methods=['POST', 'GET'])
 def mysql_queries():
     with sqlite3.connect('sql/skills.db') as con:
         cur = con.cursor()
@@ -227,6 +227,9 @@ def remover_skills():
                 return redirect('/')
     return redirect('/')
 
+@app.route('/Python', methods=['GET', 'POST'])
+def pythonProjects():
+    return render_template("pythonProject.html", language = app.config['LANGUAGE'])
 
 if __name__ == '__main__':
     app.run(debug=True)
