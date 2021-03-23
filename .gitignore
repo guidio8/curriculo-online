@@ -2,3 +2,4 @@
 .idea/
 __pycache__
 config.cfg
+.gitsecret/keys/random_seed
