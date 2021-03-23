@@ -9,13 +9,6 @@ app.config['AUTHENTICATION'] = os.getenv('AUTHENTICATION')
 app.config.from_pyfile('config.cfg', silent=True)
 
 
-def logged(*args):
-    if True in args:
-        app.config['AUTHENTICATION'] += 'logged'
-        return app.config['AUTHENTICATION']
-    else:
-        return False
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'logged' in app.config['AUTHENTICATION']:
@@ -26,7 +19,8 @@ def login():
         passw = request.form['password']
         if user == app.config['USERNAME']:
             if passw == app.config['PASSWORD']:
-                return index(logged(True))
+                app.config['AUTHENTICATION'] += 'logged'
+                return index()
 
     return render_template("login.html")
 
@@ -41,7 +35,6 @@ def translatePortugues():
 
 @app.route('/', methods=['GET'])
 def index(*args):
-    is_logged = False
     language = 'pt'
 
     if 'en' in args:
@@ -49,6 +42,8 @@ def index(*args):
 
     if 'logged' in app.config['AUTHENTICATION']:
         is_logged = True
+    else:
+        is_logged = False
 
     with sqlite3.connect('sql/skills.db') as con:
         cur = con.cursor()
