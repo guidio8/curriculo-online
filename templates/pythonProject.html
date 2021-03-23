@@ -33,7 +33,9 @@
                 {% if language == 'pt' %}
                 <form class="w3-container" method="POST">
                     <p>
-                    <h2 class="w3-text-teal"><b>Projetos em Python</b></h2>
+                    <h2 class="w3-text-teal"><b>Projetos em Python</b>
+                    <button formaction="/" class = "w3-right w3-button w3-teal">Voltar</button>
+                    </h2>
                     <br>
                     <h2>Este projeto todo foi escrito em Python, e o códgio é open source.
                         Caso queira ler o código, basta clicar no botão</h2>
@@ -47,13 +49,13 @@
                     <button class="w3-button w3-teal" formaction="http://github.com/guidio8/assistente-pessoal">Assistente Pessoal</button>
                     <p></p>
                 </form>
-                <form action="/">
-                    <button class = "w3-margin-left w3-button w3-teal">Voltar</button>
-                </form>
+                <br>
                 {% else %}
                 <form class="w3-container" method="POST">
                     <p>
-                    <h2 class="w3-text-teal"><b>Python Projects</b></h2>
+                    <h2 class="w3-text-teal"><b>Python Projects</b>
+                    <button formaction="/" class = "w3-right w3-button w3-teal">Home Page</button>
+                    </h2>
                     <br>
                     <h2>This project was written in Python and is open source, in case you want to read the code you can
                         click the button below
@@ -68,9 +70,6 @@
                     </p>
                     <button class="w3-button w3-teal" formaction="http://github.com/guidio8/assistente-pessoal">Personal Assistant</button>
                     <p></p>
-                </form>
-                <form action="/">
-                    <button class = "w3-margin-left w3-button w3-teal">Home Page</button>
                 </form>
                 {% endif %}
             </div>
