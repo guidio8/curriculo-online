@@ -70,7 +70,7 @@ def index(*args):
     return render_template('index.html', rec=skills, rec_resto=skills_resto, rec2=estudos, rec3=langs, logged=is_logged, language=language)
 
 @app.route('/fill_skills')
-def nameWIP():
+def load_pag_add_skills():
     if 'logged' in authentication:
         return render_template('add_skills.html')
     else:
@@ -84,7 +84,7 @@ def logout():
     return render_template('login.html')
 
 @app.route('/mysql', methods=['POST', 'GET'])
-def nameWIP2():
+def mysql_queries():
     with sqlite3.connect('sql/skills.db') as con:
         cur = con.cursor()
         x = cur.execute("SELECT * from FUNCIONARIOS ")
@@ -163,7 +163,7 @@ def join_from_tables():
         return render_template('MySQL.html')
 
 @app.route('/look_up_tables', methods=['GET', 'POST'])
-def nameWIP4():
+def search_tables():
     print(request.form)
     with sqlite3.connect('sql/skills.db') as con:
         cur = con.cursor()
@@ -176,7 +176,7 @@ def nameWIP4():
 
 
 @app.route('/add_skills', methods=['GET', 'POST'])
-def nameWIP3():
+def adicionar_skills():
     if 'logged' in authentication:
         if (request.method == 'POST'):
             with sqlite3.connect('sql/skills.db') as con:
@@ -202,7 +202,7 @@ def nameWIP3():
 
 
 @app.route('/remove_skills')
-def nameWIP6():
+def load_pag_remover_skills():
     if 'logged' in authentication:
         return render_template('remove_skills.html')
     else:
@@ -210,7 +210,7 @@ def nameWIP6():
 
 
 @app.route('/tira_skills', methods=['GET', 'POST'])
-def nameWIP5():
+def remover_skills():
     if (request.method == 'POST'):
         with sqlite3.connect('sql/skills.db') as con:
             insert = [
