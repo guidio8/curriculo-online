@@ -17,7 +17,7 @@ cursor.execute("""REPLACE INTO SKILLS VALUES('C#', 8)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('C', 9)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('Excel', 7)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('R', 6)""")
-cursor.execute("""REPLACE INTO SKILLS VALUES('Assemply', 6)""")
+cursor.execute("""REPLACE INTO SKILLS VALUES('Assembly', 6)""")
 
 cursor.execute("""REPLACE INTO LANGUAGES VALUES('English', 9)""")
 cursor.execute("""REPLACE INTO LANGUAGES VALUES('Português', 10)""")
