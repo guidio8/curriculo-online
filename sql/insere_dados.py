@@ -10,7 +10,7 @@ cursor.execute(
 
 cursor.execute("""REPLACE INTO SKILLS VALUES('Python', 9)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('JAVA', 8)""")
-cursor.execute("""REPLACE INTO SKILLS VALUES('Website Making', 5)""")
+cursor.execute("""REPLACE INTO SKILLS VALUES('HTML', 5)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('MySQL', 9)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('C++', 7)""")
 cursor.execute("""REPLACE INTO SKILLS VALUES('C#', 8)""")
