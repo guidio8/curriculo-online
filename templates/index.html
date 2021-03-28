@@ -67,8 +67,8 @@
         <!-- Right Column -->
         <div class="w3-twothird">
             <div class="w3-container w3-card w3-white">
-<!--                        <h2 class="w3-text-grey w3-padding-16">Esta é uma versão .pdf de um website escrito em Python e utilizando o framework Flask para servir como meu currículo,-->
-<!--                        por favor acesse http://cvluccasguidio.herokuapp.com para ver seu funcionamento</h2>-->
+                <!--                        <h2 class="w3-text-grey w3-padding-16">Esta é uma versão .pdf de um website escrito em Python e utilizando o framework Flask para servir como meu currículo,-->
+                <!--                        por favor acesse http://cvluccasguidio.herokuapp.com para ver seu funcionamento</h2>-->
                 {% if language == 'pt' %}
                 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Sobre Mim</h2>
                 {% endif %}
@@ -117,16 +117,16 @@
             <div class="w3-container w3-card w3-white">
                 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>More Skills</h2>
                 {% for p in rec_resto %}
-                {% if p.nome_skill == 'MySQL' %}
-                <form action="/mysql">
-                    <button class = "w3-btn">{{p.nome_skill}}</button>
+                {% if p.nome_skill == 'MySQL' or p.nome_skill == 'Python' %}
+                <form>
+                    <button formaction="/{{p.nome_skill}}" class = "w3-btn">{{p.nome_skill}}</button>
                 </form>
-                <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-teal w3-round-xlarge">
                     <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
                 </div>
                 {% else %}
-                <p >{{p.nome_skill}}</p>
-                <div class="w3-light-grey w3-round-xlarge w3-small">
+                <p class="w3-margin-left">{{p.nome_skill}}</p>
+                <div class="w3-light-grey w3-round-large">
                     <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{p.nota}}%">{{p.nota}}%</div>
                 </div>
                 {% endif %}

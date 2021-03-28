@@ -9,33 +9,6 @@ app.config['AUTHENTICATION'] = os.getenv('AUTHENTICATION')
 app.config['LANGUAGE'] = os.getenv('LANGUAGE')
 app.config.from_pyfile('config.cfg', silent=True)
 
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if 'logged' in app.config['AUTHENTICATION']:
-        print("aqui")
-        return redirect('/')
-    if request.method == 'POST':
-        user = request.form['username']
-        passw = request.form['password']
-        if user == app.config['USERNAME']:
-            if passw == app.config['PASSWORD']:
-                app.config['AUTHENTICATION'] += 'logged'
-                return index()
-
-    return render_template("login.html")
-
-
-@app.route('/en', methods=['GET'])
-def translateEnglish():
-    app.config['LANGUAGE'] = 'en'
-    return index()
-
-@app.route('/pt', methods=['GET'])
-def translatePortugues():
-    app.config['LANGUAGE'] = 'pt'
-    return index()
-
 @app.route('/', methods=['POST','GET'])
 def index():
 
@@ -68,6 +41,31 @@ def index():
     sqlite3.connect('sql/skills.db').close()
     return render_template('index.html', rec=skills, rec_resto=skills_resto, rec2=estudos, rec3=langs, logged=is_logged, language=app.config['LANGUAGE'])
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'logged' in app.config['AUTHENTICATION']:
+        print("aqui")
+        return redirect('/')
+    if request.method == 'POST':
+        user = request.form['username']
+        passw = request.form['password']
+        if user == app.config['USERNAME']:
+            if passw == app.config['PASSWORD']:
+                app.config['AUTHENTICATION'] += 'logged'
+                return index()
+
+    return render_template("login.html")
+
+@app.route('/en', methods=['GET'])
+def translateEnglish():
+    app.config['LANGUAGE'] = 'en'
+    return index()
+
+@app.route('/pt', methods=['GET'])
+def translatePortugues():
+    app.config['LANGUAGE'] = 'pt'
+    return index()
+
 @app.route('/fill_skills')
 def load_pag_add_skills():
     if 'logged' in app.config['AUTHENTICATION']:
@@ -80,7 +78,6 @@ def logout():
     if 'logged' in app.config['AUTHENTICATION']:
         app.config['AUTHENTICATION'] = ''
     return render_template('login.html')
-
 
 @app.route('/MySQL', methods=['POST', 'GET'])
 def mysql_queries():
@@ -173,7 +170,6 @@ def search_tables():
         con.commit()
     return render_template('MySQL.html', rec=skills)
 
-
 @app.route('/add_skills', methods=['GET', 'POST'])
 def adicionar_skills():
     if 'logged' in app.config['AUTHENTICATION']:
@@ -199,14 +195,12 @@ def adicionar_skills():
     else:
         return redirect('/')
 
-
 @app.route('/remove_skills')
 def load_pag_remover_skills():
     if 'logged' in app.config['AUTHENTICATION']:
         return render_template('remove_skills.html')
     else:
         return redirect('/')
-
 
 @app.route('/tira_skills', methods=['GET', 'POST'])
 def remover_skills():
