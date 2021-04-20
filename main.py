@@ -18,26 +18,32 @@ def index():
         is_logged = False
 
     with sqlite3.connect('sql/skills.db') as con:
-        cur = con.cursor()
-        x = cur.execute("SELECT * from SKILLS WHERE nota >= 9")
-        rows = x.fetchall()
-        skills = [dict(nome_skill=row[0], nota=row[1] * 10) for row in rows]
-        y = cur.execute("SELECT * from SKILLS WHERE nota < 9")
-        rows_resto = y.fetchall()
-        skills_resto = [dict(nome_skill=row[0], nota=row[1] * 10) for row in rows_resto]
-        con.commit()
+        try:
+            cur = con.cursor()
+            x = cur.execute("SELECT * from SKILLS WHERE nota >= 9")
+            rows = x.fetchall()
+            skills = [dict(nome_skill=row[0], nota=row[1] * 10) for row in rows]
+            y = cur.execute("SELECT * from SKILLS WHERE nota < 9")
+            rows_resto = y.fetchall()
+            skills_resto = [dict(nome_skill=row[0], nota=row[1] * 10) for row in rows_resto]
+            con.commit()
 
-        cur = con.cursor()
-        x = cur.execute("SELECT * from ESTUDOS")
-        rows = x.fetchall()
-        estudos = [dict(lugar=row[0], ano=row[1], tipo=row[2]) for row in rows]
-        con.commit()
+            cur = con.cursor()
+            x = cur.execute("SELECT * from ESTUDOS")
+            rows = x.fetchall()
+            estudos = [dict(lugar=row[0], ano=row[1], tipo=row[2]) for row in rows]
+            con.commit()
 
-        cur = con.cursor()
-        x = cur.execute("SELECT * from LANGUAGES")
-        rows = x.fetchall()
-        langs = [dict(nome_lingua=row[0], nota=row[1] * 10) for row in rows]
-        con.commit()
+            cur = con.cursor()
+            x = cur.execute("SELECT * from LANGUAGES")
+            rows = x.fetchall()
+            langs = [dict(nome_lingua=row[0], nota=row[1] * 10) for row in rows]
+            con.commit()
+        except:
+            skills = []
+            skills_resto = []
+            estudos = []
+            langs = []
     sqlite3.connect('sql/skills.db').close()
     return render_template('index.html', rec=skills, rec_resto=skills_resto, rec2=estudos, rec3=langs, logged=is_logged, language=app.config['LANGUAGE'])
 
