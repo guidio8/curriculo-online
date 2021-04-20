@@ -231,5 +231,9 @@ def remover_skills():
 def pythonProjects():
     return render_template("pythonProject.html", language = app.config['LANGUAGE'])
 
+@app.route('/legenda')
+def legenda():
+    return render_template('legenda_skills.html', language=app.config['LANGUAGE'])
+
 if __name__ == '__main__':
     app.run(debug=True)

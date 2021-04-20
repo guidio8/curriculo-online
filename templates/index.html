@@ -116,7 +116,16 @@
             </div>
 
             <div class="w3-container w3-card w3-white">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>More Skills</h2>
+                {% if language == 'pt' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Outras Skills
+                    <a href="/legenda" class="w3-button w3-teal w3-small">Legenda</a>
+                </h2>
+                {% endif %}
+                {% if language == 'en' %}
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>More Skills
+                    <a href="/legenda" class="w3-button w3-teal w3-small">Legend</a>
+                </h2>
+                {% endif %}
                 {% for p in rec_resto %}
                 {% if p.nome_skill == 'MySQL' or p.nome_skill == 'Python' %}
                 <form>
@@ -145,9 +154,7 @@
             </form>
             {% endif %}
             <br>
-            <form action='https://github.com/guidio8'>
-                <button class="w3-button w3-teal">Projetos</button>
-            </form>
+            <a href="https://github.com/guidio8" class="w3-button w3-teal">Projetos</a>
             <br>
             {% if logged == True %}
             <form action='/logout'>

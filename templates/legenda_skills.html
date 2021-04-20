@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<title>CV Luccas Guidio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img src={{url_for('static', filename = 'imagens/avatar.jpg')}} style="width:100%" alt="Avatar">
+                    <div class="w3-display-bottomleft w3-container w3-text-white">
+                        <h2>Luccas Guidio</h2>
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-grey"></i>Cientista da Computação</p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-grey"></i>São Paulo, Brasil</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-grey"></i>guidioo@hotmail.com</p>
+                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-grey"></i>+55(11)97322-6172</p>
+                    <hr>
+                </div>
+            </div><br>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+            <div class="w3-container w3-card w3-white">
+                {% if language == 'pt' %}
+                <h2 class="w3-text-grey w3-padding-16">
+                    <i class="fa fa-book fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Sobre as notas
+                </h2>
+                <h3 class="w3-text-grey">As porcentagens dadas à cada skill refletem algumas características definidas à seguir:</h3>
+                <br>
+                <h3 class="w3-text-teal">
+                    <li>Se eu possuo vontade de usar no trabalho</li>
+                    <li>Se eu tenho gosto pela linguagem</li>
+                    <li>Se eu ja tive alguma aula sobre a linguagem</li>
+                    <li>Se eu tenho algum projeto para a faculdade escrito na linguagem</li>
+                    <li>Se eu tenho algum projeto pessoal escrito na linguagem</li>
+                    <li>Se eu me considero experiente</li>
+                    <li>Se eu possuo experiência profissional com a linguagem</li>
+                </h3>
+                <br>
+                <h3 class="w3-text-grey">A nota final é dada levando em consideração todos os itens da lista
+                    e uma nota de 0-10 que eu mesmo me dou que reflete a minha proficiência em cada linguagem
+                    na minha opinião.
+                    Algo que pode ser notado é o fato de eu não ter experiência profissional (ainda), portanto
+                    nenhuma skill chega à nota 10.
+                </h3>
+                <br>
+                <h3 class="w3-text-grey">Uma maior porcentagem significa que a linguagem é aprovada por uma maior quantidade de items da lista
+                </h3>
+                <a href="/" class="w3-button w3-teal">Voltar</a>
+                </br>
+                {% endif %}
+                {% if language == 'en' %}
+                <h2 class="w3-text-grey w3-padding-16">
+                    <i class="fa fa-book fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>About the rating
+                </h2>
+                <h3 class="w3-text-grey">Each percentage attributed to a skill reflects some of the features shown below:</h3>
+                <br>
+                <h3 class="w3-text-teal">
+                    <li>If I have the desire to work with the language</li>
+                    <li>If I enjoy programming in said language</li>
+                    <li>If I had classes about the language</li>
+                    <li>If I have any college project/assignment written in the language</li>
+                    <li>If I have any personal project/assignment written in the language</li>
+                    <li>If I consider myself experienced in the language</li>
+                    <li>If I have any professional experience with the language</li>
+                </h3>
+                <br>
+                <h3 class="w3-text-grey">The final rating is given based on all those items in the list and a 0-10
+                    grade that I give myself representing how much proficient I am in each language, in my opinion.
+
+                    One thing that is worth noting is the fact that I don't have any professional experience (yet),
+                    therefore no skill reaches the rating of 10
+                </h3>
+                <br>
+                <h3 class="w3-text-grey">The higher the percentage, the more items of the list each language checks off
+                </h3>
+                <a href="/" class="w3-button w3-teal">Go back</a>
+                </br>
+                {% endif %}
+                <br>
+            </div>
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <a href="https://github.com/guidio8" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/luccas-guidio-863497209/" class="fa fa-linkedin w3-hover-opacity"></a>
+    <br>
+</footer>
+
+</body>
+</html>
