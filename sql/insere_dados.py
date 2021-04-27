@@ -4,7 +4,7 @@ conn = sqlite3.connect('skills.db')
 
 cursor = conn.cursor()
 cursor.execute(
-    "REPLACE INTO ESTUDOS VALUES('Universidade Federal de São João del-Rei', '2015-2021', 'Bacharelado')")
+    "REPLACE INTO ESTUDOS VALUES('Universidade Federal de São João del-Rei', '2015-2021', 'Bacharelado em Ciência da Computação')")
 cursor.execute(
     "REPLACE INTO ESTUDOS VALUES('Colégio Franciscano Nossa Senhora Aparecida', '2010-2013', 'Ensino Médio')")
 
